@@ -236,14 +236,98 @@ shinyUI(
           
           # Página 2
           tabPanel(
-            title = "MEPO",
+            title = "Análisis por distrito",
             br(),
-            h3("MEPO"),
-            p("MEPO")
+            
+            # Controles específicos de esta página
+            fluidRow(
+              column(
+                width = 3,
+                selectInput(
+                  inputId = "district_focus",
+                  label = "Seleccionar distrito para análisis",
+                  choices = districts,
+                  selected = districts[1]
+                )
+              ),
+              column(
+                width = 3,
+                selectInput(
+                  inputId = "compare_districts",
+                  label = "Comparar con distrito(s)",
+                  choices = districts,
+                  selected = districts[2],
+                  multiple = TRUE
+                )
+              ),
+              column(
+                width = 3,
+                sliderInput(
+                  inputId = "year_district",
+                  label = "Año",
+                  min = years_range[1],
+                  max = years_range[2],
+                  value = years_range[2],
+                  sep = "",
+                  step = 1
+                )
+              ),
+              column(
+                width = 3,
+                selectInput(
+                  inputId = "crime_category",
+                  label = "Categoría de delito",
+                  choices = c("Todos" = "__ALL__", primary_types),
+                  selected = "__ALL__"
+                )
+              )
+            ),
+            
+            hr(),
+            
+            # KPIs del distrito seleccionado
+            uiOutput("kpi_district_boxes"),
+            
+            br(),
+            
+            # Primera fila de gráficos
+            fluidRow(
+              column(
+                width = 6,
+                h4("Comparativa de incidentes por distrito"),
+                plotOutput("plot_district_comparison", height = "300px")
+              ),
+              column(
+                width = 6,
+                h4("Tendencia anual del distrito seleccionado"),
+                plotOutput("plot_district_trend", height = "300px")
+              )
+            ),
+            
+            br(),
+            
+            # Segunda fila de gráficos
+            fluidRow(
+              column(
+                width = 6,
+                h4("Distribución por día de la semana"),
+                plotOutput("plot_weekday_district", height = "300px")
+              ),
+              column(
+                width = 6,
+                h4("Top 5 tipos de delito en el distrito"),
+                plotOutput("plot_top_crimes_district", height = "300px")
+              )
+            ),
+            
+            br(),
+            
+            # Tabla de resumen
+            h4("Resumen detallado por tipo de delito en el distrito"),
+            DTOutput("table_district_summary")
           )
         )
       )
     )
   )
 )
-

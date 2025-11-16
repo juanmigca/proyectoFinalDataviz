@@ -1,4 +1,5 @@
 .RDataTmp
 .Rhistory
 .RData
+.DS_Store
 chicago_crime_2020-2025.csv
