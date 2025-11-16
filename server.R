@@ -215,7 +215,7 @@ shinyServer(function(input, output, session) {
   })
   
   
-  # ----------------- TABLA -----------------
+  # Tabla
   
   output$table_crime <- renderDT({
     df <- filtered_data()
@@ -247,7 +247,7 @@ shinyServer(function(input, output, session) {
       )
   })
   
-  # ==================== PÁGINA 2: ANÁLISIS POR DISTRITO ====================
+  # Página 2
   
   # Datos filtrados para el análisis por distrito
   district_data <- reactive({
