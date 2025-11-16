@@ -24,6 +24,8 @@ Para este proyecto se extrajeron únicamente los registros correspondientes a lo
 
 Este archivo se guardo localmente como *chicago_crime_2020-2025.csv*
 
+Para generar el archivo, utilice el URL anterior y descarguelo de la página o utilice la extracción automática en **extract.py**.
+
 ---
 
 ## Descripción General del Dataset
